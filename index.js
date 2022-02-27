@@ -21,7 +21,7 @@ app.post('/', uploadMiddleware, (req, res) => {
   res.json({
     success: true,
     message: 'Success upload file',
-    urlImage: `https://img-resize-xxx.herokuapp.com//public/${req.file.filename}`,
+    urlImage: `https://img-resize-xxx.herokuapp.com/public/${req.file.filename}`,
   });
 });
 
