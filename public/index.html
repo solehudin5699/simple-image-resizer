@@ -271,6 +271,9 @@
       const formData = new FormData();
       formData.append('image', imageFile);
 
+      btnSubmit.innerHTML = 'Loading...';
+      btnSubmit.setAttribute('disabled', true);
+
       fetch('https://img-resize-xxx.herokuapp.com/', {
         method: 'POST',
         headers: {},
@@ -283,8 +286,13 @@
             : `?quality=${qualityValue}&width=${widthValue}&height=${heightValue}`;
           anchorDonwload.setAttribute('href', result.urlImage + params);
           anchorDonwload.click();
+          btnSubmit.innerHTM = 'Submit & Download';
+          btnSubmit.removeAttribute('disabled');
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          btnSubmit.innerHTM = 'Submit & Download';
+          btnSubmit.removeAttribute('disabled');
+        });
     });
   </script>
 </html>
