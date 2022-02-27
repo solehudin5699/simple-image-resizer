@@ -286,11 +286,11 @@
             : `?quality=${qualityValue}&width=${widthValue}&height=${heightValue}`;
           anchorDonwload.setAttribute('href', result.urlImage + params);
           anchorDonwload.click();
-          btnSubmit.innerHTM = 'Submit & Download';
+          btnSubmit.innerHTML = 'Submit & Download';
           btnSubmit.removeAttribute('disabled');
         })
         .catch((err) => {
-          btnSubmit.innerHTM = 'Submit & Download';
+          btnSubmit.innerHTML = 'Submit & Download';
           btnSubmit.removeAttribute('disabled');
         });
     });
