@@ -190,6 +190,7 @@
   <script>
     const formSubmit = document.getElementById('form-submit');
     const btnBrowse = document.getElementById('btn-browse');
+    const btnSubmit = document.getElementById('btn-submit');
     const inputFile = document.getElementById('input-file');
     const anchorDonwload = document.getElementById('anchor-donwload');
     const inputQuality = document.getElementById('quality-input');
@@ -198,13 +199,17 @@
     const inputHeight = document.getElementById('height-input');
     const checkboxOriSize = document.getElementById('original-size-input');
 
-    if (checkboxOriSize.checked) {
-      inputHeight.setAttribute('disabled', true);
-      inputWidth.setAttribute('disabled', true);
-    } else {
-      inputHeight.removeAttribute('disabled');
-      inputWidth.removeAttribute('disabled');
-    }
+    const setInitialState = (() => {
+      if (checkboxOriSize.checked) {
+        inputHeight.setAttribute('disabled', true);
+        inputWidth.setAttribute('disabled', true);
+      } else {
+        inputHeight.removeAttribute('disabled');
+        inputWidth.removeAttribute('disabled');
+      }
+      valueQuality.innerHTML = inputQuality.value;
+      btnSubmit.setAttribute('disabled', true);
+    })();
 
     btnBrowse.addEventListener('click', (e) => {
       inputFile.click();
@@ -227,6 +232,8 @@
         btnBrowse.innerHTML = 'Change Image';
       };
       imageFile.src = URL.createObjectURL(file);
+
+      btnSubmit.removeAttribute('disabled');
     });
 
     inputQuality.addEventListener('change', (e) => {
