@@ -2,12 +2,12 @@ const sharp = require('sharp');
 const fs = require('fs');
 
 const resizer = async (req, res) => {
+  const { width, height, quality, format } = req.query;
+  const { filename } = req.params;
   try {
-    const { width, height, quality, format } = req.query;
-    const { filename } = req.params;
-
     if (width) {
       if (parseInt(width) > 5000) {
+        fs.unlinkSync('public/' + filename);
         return res.status(400).json({
           success: false,
           message: 'Error. Width must be <=5000',
@@ -17,6 +17,7 @@ const resizer = async (req, res) => {
 
     if (height) {
       if (parseInt(height) > 5000) {
+        fs.unlinkSync('public/' + filename);
         return res.status(400).json({
           success: false,
           message: 'Error. Height must be <=5000',
@@ -26,6 +27,7 @@ const resizer = async (req, res) => {
 
     if (quality) {
       if (parseInt(quality) > 100) {
+        fs.unlinkSync('public/' + filename);
         return res.status(400).json({
           success: false,
           message: 'Error. Quality must be <=100',
@@ -54,6 +56,7 @@ const resizer = async (req, res) => {
 
     fs.unlinkSync('public/' + filename);
   } catch (error) {
+    fs.unlinkSync('public/' + filename);
     res.setHeader('content-type', 'application/json');
     res.status(500).json({
       success: false,
