@@ -133,24 +133,12 @@
       <div class="form-options">
         <div class="input-wrapper">
           <label for="quality-input" class="label-option">Quality</label>
-          <input
-            id="quality-input"
-            class="input-option-quality"
-            type="range"
-            max="100"
-            min="1"
-          />
+          <input id="quality-input" class="input-option-quality" type="range" max="100" min="1" />
           <span id="value-quality" class="value-qty-img"></span>
         </div>
         <div class="checkbox-wrapper">
-          <label for="use-dimension-input" class="label-option-checkbox"
-            >Original Size</label
-          >
-          <input
-            id="original-size-input"
-            type="checkbox"
-            class="checkbox-option"
-          />
+          <label for="use-dimension-input" class="label-option-checkbox">Original Size</label>
+          <input id="original-size-input" type="checkbox" class="checkbox-option" />
         </div>
         <div class="input-wrapper">
           <label for="width-input" class="label-option">Width</label>
@@ -179,9 +167,7 @@
         </div>
       </div>
 
-      <button id="btn-submit" class="btn-submit" type="submit">
-        Submit & Download
-      </button>
+      <button id="btn-submit" class="btn-submit" type="submit">Submit & Download</button>
     </form>
 
     <a
@@ -231,9 +217,7 @@
         btnBrowse.style.backgroundSize = 'cover';
         btnBrowse.style.backgroundColor = 'transparent';
         btnBrowse.style.width = `70vw`;
-        btnBrowse.style.height = `calc(${
-          imageFile.height / imageFile.width
-        }*70vw)`;
+        btnBrowse.style.height = `calc(${imageFile.height / imageFile.width}*70vw)`;
         btnBrowse.style.placeContent = 'flex-end center';
         btnBrowse.innerHTML = 'Change Image';
       };
@@ -273,7 +257,7 @@
       btnSubmit.innerHTML = 'Loading...';
       btnSubmit.setAttribute('disabled', true);
 
-      fetch('https://img-resize-xxx.herokuapp.com/', {
+      fetch('/', {
         method: 'POST',
         headers: {},
         body: formData,

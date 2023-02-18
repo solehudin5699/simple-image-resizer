@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -21,7 +23,7 @@ app.post('/', uploadMiddleware, (req, res) => {
   res.json({
     success: true,
     message: 'Success upload file',
-    urlImage: `https://img-resize-xxx.herokuapp.com/public/${req.file.filename}`,
+    urlImage: `${process.env.ORIGIN}/public/${req.file?.filename}`,
   });
 });
 
