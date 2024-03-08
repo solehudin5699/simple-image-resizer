@@ -133,12 +133,24 @@
       <div class="form-options">
         <div class="input-wrapper">
           <label for="quality-input" class="label-option">Quality</label>
-          <input id="quality-input" class="input-option-quality" type="range" max="100" min="1" />
+          <input
+            id="quality-input"
+            class="input-option-quality"
+            type="range"
+            max="100"
+            min="1"
+          />
           <span id="value-quality" class="value-qty-img"></span>
         </div>
         <div class="checkbox-wrapper">
-          <label for="use-dimension-input" class="label-option-checkbox">Original Size</label>
-          <input id="original-size-input" type="checkbox" class="checkbox-option" />
+          <label for="use-dimension-input" class="label-option-checkbox"
+            >Original Size</label
+          >
+          <input
+            id="original-size-input"
+            type="checkbox"
+            class="checkbox-option"
+          />
         </div>
         <div class="input-wrapper">
           <label for="width-input" class="label-option">Width</label>
@@ -167,7 +179,9 @@
         </div>
       </div>
 
-      <button id="btn-submit" class="btn-submit" type="submit">Submit & Download</button>
+      <button id="btn-submit" class="btn-submit" type="submit">
+        Submit & Download
+      </button>
     </form>
 
     <a
@@ -180,69 +194,71 @@
     ></a>
   </body>
   <script>
-    const formSubmit = document.getElementById('form-submit');
-    const btnBrowse = document.getElementById('btn-browse');
-    const btnSubmit = document.getElementById('btn-submit');
-    const inputFile = document.getElementById('input-file');
-    const anchorDonwload = document.getElementById('anchor-donwload');
-    const inputQuality = document.getElementById('quality-input');
-    const valueQuality = document.getElementById('value-quality');
-    const inputWidth = document.getElementById('width-input');
-    const inputHeight = document.getElementById('height-input');
-    const checkboxOriSize = document.getElementById('original-size-input');
+    const formSubmit = document.getElementById("form-submit");
+    const btnBrowse = document.getElementById("btn-browse");
+    const btnSubmit = document.getElementById("btn-submit");
+    const inputFile = document.getElementById("input-file");
+    const anchorDonwload = document.getElementById("anchor-donwload");
+    const inputQuality = document.getElementById("quality-input");
+    const valueQuality = document.getElementById("value-quality");
+    const inputWidth = document.getElementById("width-input");
+    const inputHeight = document.getElementById("height-input");
+    const checkboxOriSize = document.getElementById("original-size-input");
 
     const setInitialState = (() => {
       if (checkboxOriSize.checked) {
-        inputHeight.setAttribute('disabled', true);
-        inputWidth.setAttribute('disabled', true);
+        inputHeight.setAttribute("disabled", true);
+        inputWidth.setAttribute("disabled", true);
       } else {
-        inputHeight.removeAttribute('disabled');
-        inputWidth.removeAttribute('disabled');
+        inputHeight.removeAttribute("disabled");
+        inputWidth.removeAttribute("disabled");
       }
       valueQuality.innerHTML = inputQuality.value;
-      btnSubmit.setAttribute('disabled', true);
+      btnSubmit.setAttribute("disabled", true);
     })();
 
-    btnBrowse.addEventListener('click', (e) => {
+    btnBrowse.addEventListener("click", (e) => {
       inputFile.click();
     });
 
-    inputFile.addEventListener('change', (e) => {
+    inputFile.addEventListener("change", (e) => {
       const file = e.target.files[0];
 
       const imageFile = new Image();
       imageFile.onload = function () {
         // URL.revokeObjectURL(image.src);
         btnBrowse.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
-        btnBrowse.style.backgroundSize = 'cover';
-        btnBrowse.style.backgroundColor = 'transparent';
+        btnBrowse.style.backgroundSize = "cover";
+        btnBrowse.style.backgroundColor = "transparent";
         btnBrowse.style.width = `70vw`;
-        btnBrowse.style.height = `calc(${imageFile.height / imageFile.width}*70vw)`;
-        btnBrowse.style.placeContent = 'flex-end center';
-        btnBrowse.innerHTML = 'Change Image';
+        btnBrowse.style.height = `calc(${
+          imageFile.height / imageFile.width
+        }*70vw)`;
+        btnBrowse.style.placeContent = "flex-end center";
+        btnBrowse.innerHTML = "Change Image";
       };
       imageFile.src = URL.createObjectURL(file);
 
-      btnSubmit.removeAttribute('disabled');
+      btnSubmit.removeAttribute("disabled");
     });
 
-    inputQuality.addEventListener('change', (e) => {
+    inputQuality.addEventListener("change", (e) => {
       const qualityValue = e.target.value;
       valueQuality.innerHTML = qualityValue;
     });
 
-    checkboxOriSize.addEventListener('change', (e) => {
+    checkboxOriSize.addEventListener("change", (e) => {
       const isChecked = e.target.checked;
       if (isChecked) {
-        inputHeight.setAttribute('disabled', true);
-        inputWidth.setAttribute('disabled', true);
+        inputHeight.setAttribute("disabled", true);
+        inputWidth.setAttribute("disabled", true);
       } else if (!isChecked) {
-        inputHeight.removeAttribute('disabled');
-        inputWidth.removeAttribute('disabled');
+        inputHeight.removeAttribute("disabled");
+        inputWidth.removeAttribute("disabled");
       }
     });
 
-    formSubmit.addEventListener('submit', (e) => {
+    formSubmit.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const heightValue = inputHeight.value;
@@ -252,13 +268,13 @@
       const imageFile = inputFile.files[0];
 
       const formData = new FormData();
-      formData.append('image', imageFile);
+      formData.append("image", imageFile);
 
-      btnSubmit.innerHTML = 'Loading...';
-      btnSubmit.setAttribute('disabled', true);
+      btnSubmit.innerHTML = "Loading...";
+      btnSubmit.setAttribute("disabled", true);
 
-      fetch('/', {
-        method: 'POST',
+      fetch("/", {
+        method: "POST",
         headers: {},
         body: formData,
       })
@@ -267,14 +283,17 @@
           const params = isOriginalSize
             ? `?quality=${qualityValue}`
             : `?quality=${qualityValue}&width=${widthValue}&height=${heightValue}`;
-          anchorDonwload.setAttribute('href', result.urlImage + params);
+          anchorDonwload.setAttribute(
+            "href",
+            `${window.location.origin}/${result.path}${params}`
+          );
           anchorDonwload.click();
-          btnSubmit.innerHTML = 'Submit & Download';
-          btnSubmit.removeAttribute('disabled');
+          btnSubmit.innerHTML = "Submit & Download";
+          btnSubmit.removeAttribute("disabled");
         })
         .catch((err) => {
-          btnSubmit.innerHTML = 'Submit & Download';
-          btnSubmit.removeAttribute('disabled');
+          btnSubmit.innerHTML = "Submit & Download";
+          btnSubmit.removeAttribute("disabled");
         });
     });
   </script>
