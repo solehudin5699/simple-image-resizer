@@ -23,7 +23,7 @@ docker run -it --name img-resizer -p 5000:5000 -d solehudin5699/img-resizer
 
 - Resize from image url :
 
-  > https://img-resizer.escloud.my.id/{IMAGE-URL}{?|&}width={VALUE}&height={VALUE}&quality={90}&format={format that you want}"
+  > https://img-resizer.escloud.my.id/{IMAGE-URL}{?|&}width={VALUE}&height={VALUE}&quality={VALUE}&format={format that you want}"
 
 - Notes:
 
