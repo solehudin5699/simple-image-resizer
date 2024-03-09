@@ -15,10 +15,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
+//GET UI
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
+
+// GET/DOWNLOAD IMAGE
 app.get("/public/:filename", resizer);
+
+//UPLOAD IMAGE
 app.post("/", uploadMiddleware, (req, res) => {
   res.json({
     success: true,
@@ -26,6 +31,9 @@ app.post("/", uploadMiddleware, (req, res) => {
     path: `public/${req.file?.filename}`,
   });
 });
+
+//RESIZE IMG FROM URL (query-> width,height,format,quality)
+app.get("/image/resize/*", resizer);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
