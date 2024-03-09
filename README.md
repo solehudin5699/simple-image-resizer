@@ -32,7 +32,7 @@ docker run -it --name img-resizer -p 5000:5000 -d solehudin5699/img-resizer
   - height: height that will we return (optional, max 5000)
   - quality: quality image that will we return (optional, max 100)
   - format: format image (optional, use jpeg or jpg, png, or webp)
-  - If IMAGE-URL have query, add "&" at the end IMAGE-URL, then add query width, height, or other that you want.
+  - If IMAGE-URL have query, add "&" at the end IMAGE-URL, then followed query width, height, or other that you want.
     Example:
 
     IMAGE-URL=https://avatars.githubusercontent.com/u/65361695?v=4
