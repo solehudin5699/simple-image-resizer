@@ -19,11 +19,11 @@ docker run -it --name img-resizer -p 5000:5000 -d solehudin5699/img-resizer
 
   > Local --> http://localhost:5000/
 
-  > My website: https://img-resizer.escloud.my.id/
+  > My website: https://img-resizer.solehudin.id/
 
 - Resize from image url :
 
-  > https://img-resizer.escloud.my.id/image/resize/{IMAGE-URL}{?|&}width={VALUE}&height={VALUE}&quality={VALUE}&format={VALUE}
+  > https://img-resizer.solehudin.id/image/resize/{IMAGE-URL}{?|&}width={VALUE}&height={VALUE}&quality={VALUE}&format={VALUE}
 
 - Notes:
 
@@ -37,10 +37,10 @@ docker run -it --name img-resizer -p 5000:5000 -d solehudin5699/img-resizer
 
     IMAGE-URL=https://avatars.githubusercontent.com/u/65361695?v=4
 
-    Use: https://img-resizer.escloud.my.id/image/resize/https://avatars.githubusercontent.com/u/65361695?v=4&width=100.
+    Use: https://img-resizer.solehudin.id/image/resize/https://avatars.githubusercontent.com/u/65361695?v=4&width=100.
 
     If not, use "?" followed query you want, example
 
     IMAGE-URL=https://avatars.githubusercontent.com/u/65361695
 
-    Use: https://img-resizer.escloud.my.id/image/resize/https://avatars.githubusercontent.com/u/65361695?width=100
+    Use: https://img-resizer.solehudin.id/image/resize/https://avatars.githubusercontent.com/u/65361695?width=100
